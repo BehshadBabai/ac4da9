@@ -62,17 +62,19 @@ const Home = ({ user, logout }) => {
     });
   };
 
-  const postMessage = (body) => {
+  const postMessage = async (body) => {
     try {
-      const data = saveMessage(body);
+      // added await because the operation returns a promise and takes time to evaluate data so everything was undefined before
+      const data = await saveMessage(body);
 
       if (!body.conversationId) {
         addNewConvo(body.recipientId, data.message);
       } else {
         addMessageToConversation(data);
       }
-
       sendMessage(data, body);
+      // changing the state to force a re-render so the user can see the difference immediately
+      setConversations([...conversations]);
     } catch (error) {
       console.error(error);
     }
@@ -98,13 +100,14 @@ const Home = ({ user, logout }) => {
       if (sender !== null) {
         const newConvo = {
           id: message.conversationId,
-          otherUser: sender,
+          otherUser: sender, 
           messages: [message],
         };
         newConvo.latestMessageText = message.text;
-        setConversations((prev) => [newConvo, ...prev]);
+        // Changed the convo order
+        setConversations((prev) => prev.push(newConvo));
       }
-
+      console.log('anything even happen here?');
       conversations.forEach((convo) => {
         if (convo.id === message.conversationId) {
           convo.messages.push(message);
@@ -182,6 +185,10 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         const { data } = await axios.get("/api/conversations");
+        // reversing the order of the messages
+        data.forEach((convo)=>{
+          convo.messages = convo.messages.reverse();
+        });
         setConversations(data);
       } catch (error) {
         console.error(error);
