@@ -64,7 +64,6 @@ const Home = ({ user, logout }) => {
 
   const postMessage = async (body) => {
     try {
-      // added await because the operation returns a promise and takes time to evaluate data so everything was undefined before
       const data = await saveMessage(body);
 
       if (!body.conversationId) {
@@ -73,8 +72,7 @@ const Home = ({ user, logout }) => {
         addMessageToConversation(data);
       }
       sendMessage(data, body);
-      // changing the state to force a re-render so the user can see the difference immediately
-      setConversations([...conversations]);
+      
     } catch (error) {
       console.error(error);
     }
@@ -82,16 +80,18 @@ const Home = ({ user, logout }) => {
 
   const addNewConvo = useCallback(
     (recipientId, message) => {
-      conversations.forEach((convo) => {
-        if (convo.otherUser.id === recipientId) {
-          convo.messages.push(message);
-          convo.latestMessageText = message.text;
-          convo.id = message.conversationId;
-        }
+      setConversations((prev)=> {
+        return prev.map((convo) => {
+          if (convo.otherUser.id === recipientId) {
+            return {...convo, messages: [...convo.messages,message], latestMessageText: message.text, id: message.conversationId};
+          }
+          else{
+            return convo;
+          }
+        });
       });
-      setConversations(conversations);
     },
-    [setConversations, conversations],
+    [],
   );
   const addMessageToConversation = useCallback(
     (data) => {
@@ -104,19 +104,22 @@ const Home = ({ user, logout }) => {
           messages: [message],
         };
         newConvo.latestMessageText = message.text;
-        // Changed the convo order
-        setConversations((prev) => prev.push(newConvo));
+        
+        setConversations((prev) => [newConvo, ...prev]);
       }
-      console.log('anything even happen here?');
-      conversations.forEach((convo) => {
-        if (convo.id === message.conversationId) {
-          convo.messages.push(message);
-          convo.latestMessageText = message.text;
-        }
+      
+      setConversations((prev)=>{
+        return prev.map((convo)=>{
+          if (convo.id === message.conversationId) {
+            return {...convo, messages: [...convo.messages, message], latestMessageText: message.text};
+          }
+          else{
+            return {...convo}
+          }
+        })
       });
-      setConversations(conversations);
     },
-    [setConversations, conversations],
+    [],
   );
 
   const setActiveChat = (username) => {
@@ -185,7 +188,7 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         const { data } = await axios.get("/api/conversations");
-        // reversing the order of the messages
+
         data.forEach((convo)=>{
           convo.messages = convo.messages.reverse();
         });
