@@ -80,18 +80,22 @@ const Home = ({ user, logout }) => {
 
   const addNewConvo = useCallback(
     (recipientId, message) => {
-      setConversations((prev)=> {
-        return prev.map((convo) => {
+      setConversations((prev)=> 
+        prev.map((convo) => {
           if (convo.otherUser.id === recipientId) {
-            return {...convo, messages: [...convo.messages,message], latestMessageText: message.text, id: message.conversationId};
+            const convoCopy = {...convo};
+            convoCopy.messages = [...convoCopy.messages, message];
+            convoCopy.latestMessageText = message.text;
+            convoCopy.id = message.conversationId;
+            return convoCopy;
           }
           else{
             return convo;
           }
-        });
-      });
+        })
+      );
     },
-    [],
+    [conversations, setConversations],
   );
   const addMessageToConversation = useCallback(
     (data) => {
@@ -108,18 +112,21 @@ const Home = ({ user, logout }) => {
         setConversations((prev) => [newConvo, ...prev]);
       }
       
-      setConversations((prev)=>{
-        return prev.map((convo)=>{
+      setConversations((prev)=>
+        prev.map((convo)=>{
           if (convo.id === message.conversationId) {
-            return {...convo, messages: [...convo.messages, message], latestMessageText: message.text};
+            const convoCopy = {...convo};
+            convoCopy.messages = [...convoCopy.messages, message];
+            convoCopy.latestMessageText = message.text;
+            return convoCopy;
           }
           else{
-            return {...convo}
+            return convo;
           }
         })
-      });
+      );
     },
-    [],
+    [conversations, setConversations],
   );
 
   const setActiveChat = (username) => {
