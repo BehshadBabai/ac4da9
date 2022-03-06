@@ -49,7 +49,7 @@ const Signup = ({ user, register }) => {
         <Grid item xs={12} sm={7}>
           <Grid item container className='login-signup' alignItems='baseline' alignContent='center' justifyContent='flex-end'>
             <Typography className='need-to-login-signup'>Already have an account?</Typography>
-            <Link href="/login" to="/login" style={{textDecoration: 'none'}}>
+            <Link href="/login" to="/login" className='login-signup-button-link' >
               <Button variant='outlined'>Login</Button>
             </Link>
           </Grid>
