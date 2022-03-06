@@ -95,7 +95,7 @@ const Home = ({ user, logout }) => {
         })
       );
     },
-    [conversations, setConversations],
+    [],
   );
   const addMessageToConversation = useCallback(
     (data) => {
@@ -126,7 +126,7 @@ const Home = ({ user, logout }) => {
         })
       );
     },
-    [conversations, setConversations],
+    [],
   );
 
   const setActiveChat = (username) => {
