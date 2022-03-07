@@ -1,0 +1,116 @@
+body {
+  font-family: Open Sans;
+}
+
+.side-banner {
+  background-image: url('./img/bg-img.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-signup-container {
+  height: 600px;
+}
+
+.login-signup {
+  padding-right: 42px;
+}
+
+.login-signup p,
+a {
+  margin-left: 30px;
+}
+
+.login-signup button {
+  background-color: #ffffff;
+  color: #3a8dff;
+  width: 140px;
+  height: 54px;
+  box-shadow: 0px 2px 12px rgba(74, 106, 149, 0.2);
+  border-radius: 5px;
+}
+
+.overlay {
+  background: linear-gradient(180deg, #3a8dff 0%, #86b9ff 100%);
+  mix-blend-mode: normal;
+  opacity: 0.85;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: absolute;
+  height: 100%;
+}
+
+.chat {
+  width: 80%;
+  height: 40%;
+}
+
+.chatImage {
+  background-image: url('./img/bubble.svg');
+  width: 67px;
+  height: 67px;
+  background-repeat: no-repeat;
+}
+
+.chatText {
+  color: #ffffff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 154%;
+  text-align: center;
+}
+
+.need-to-login-signup {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+  color: #b0b0b0;
+}
+
+.login-signup a {
+  text-decoration: none;
+}
+
+.formInput div {
+  margin-top: 1em;
+}
+
+.forms button {
+  background-color: #3a8dff;
+  color: #ffffff;
+  padding: 1em 3em;
+  margin-top: 2em;
+  border-radius: 3px;
+}
+
+.forms button:hover {
+  background-color: #3a8dff;
+}
+
+form {
+  width: 100%;
+}
+
+.formTitle {
+  font-family: Open Sans !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 26px !important;
+  line-height: 40px !important;
+  margin-bottom: 30px !important;
+  color: #000000;
+}
+
+@media only screen and (max-width: 599px) {
+  .container {
+    height: 150%;
+  }
+  .login-signup {
+    justify-content: center !important;
+  }
+}

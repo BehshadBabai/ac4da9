@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
   TextField,
   FormHelperText,
 } from '@material-ui/core';
+import './signin-signup.css';
+import { SideBanner } from './components/SideBanner';
 
 const Signup = ({ user, register }) => {
   const history = useHistory();
@@ -36,74 +37,106 @@ const Signup = ({ user, register }) => {
   }, [user, history]);
 
   return (
-    <Grid container justifyContent="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Link href="/login" to="/login">
-            <Button>Login</Button>
+    <Grid container className='container'>
+      <SideBanner xs={12} sm={5} />
+      {/** right side of the page */}
+      <Grid
+        item
+        xs={12}
+        sm={7}
+        container
+        alignItems='center'
+        className='login-signup-container'
+      >
+        <Grid
+          item
+          container
+          className='login-signup'
+          alignItems='baseline'
+          justifyContent='flex-end'
+        >
+          <Typography className='need-to-login-signup'>
+            Already have an account?
+          </Typography>
+          <Link href='/login' to='/login'>
+            <Button variant='outlined'>Login</Button>
           </Link>
         </Grid>
-        <form onSubmit={handleRegister}>
-          <Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
-              </FormControl>
+        <Grid className='forms'>
+          <form onSubmit={handleRegister}>
+            <Grid container justifyContent='center'>
+              <Grid item xs={7}>
+                <Typography variant='h4'>Create an account.</Typography>
+              </Grid>
+              <Grid item xs={7}>
+                <FormControl fullWidth={true} className='formInput'>
+                  <TextField
+                    aria-label='username'
+                    label='Username'
+                    name='username'
+                    type='text'
+                    required
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={7}>
+                <FormControl fullWidth={true} className='formInput'>
+                  <TextField
+                    label='E-mail address'
+                    aria-label='e-mail address'
+                    type='email'
+                    name='email'
+                    required
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={7}>
+                <FormControl
+                  error={!!formErrorMessage.confirmPassword}
+                  fullWidth={true}
+                  className='formInput'
+                >
+                  <TextField
+                    aria-label='password'
+                    label='Password'
+                    type='password'
+                    inputProps={{ minLength: 6 }}
+                    name='password'
+                    required
+                  />
+                  <FormHelperText>
+                    {formErrorMessage.confirmPassword}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item xs={7}>
+                <FormControl
+                  error={!!formErrorMessage.confirmPassword}
+                  fullWidth={true}
+                  className='formInput'
+                >
+                  <TextField
+                    label='Confirm Password'
+                    aria-label='confirm password'
+                    type='password'
+                    inputProps={{ minLength: 6 }}
+                    name='confirmPassword'
+                    required
+                  />
+                  <FormHelperText>
+                    {formErrorMessage.confirmPassword}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid container justifyContent='center'>
+                <Button type='submit' variant='contained'>
+                  Create
+                </Button>
+              </Grid>
             </Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  aria-label="password"
-                  label="Password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="password"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  label="Confirm Password"
-                  aria-label="confirm password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="confirmPassword"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Button type="submit" variant="contained" size="large">
-              Create
-            </Button>
-          </Grid>
-        </form>
-      </Box>
+          </form>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

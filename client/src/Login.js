@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
   TextField,
 } from '@material-ui/core';
+import { SideBanner } from './components/SideBanner';
 
 const Login = ({ user, login }) => {
   const history = useHistory();
@@ -27,42 +27,69 @@ const Login = ({ user, login }) => {
   }, [user, history]);
 
   return (
-    <Grid container justifyContent="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Link href="/register" to="/register">
-            <Button>Register</Button>
+    <Grid container className='container'>
+      <SideBanner xs={12} sm={5} />
+      {/** right side of the page */}
+      <Grid
+        item
+        xs={12}
+        sm={7}
+        container
+        alignItems='center'
+        className='login-signup-container'
+        style={{ height: '500px' }}
+      >
+        <Grid
+          item
+          container
+          className='login-signup'
+          alignItems='baseline'
+          alignContent='center'
+          justifyContent='flex-end'
+        >
+          <Typography className='need-to-login-signup'>
+            Don't have an account?
+          </Typography>
+          <Link href='/register' to='/register'>
+            <Button variant='outlined'>Create Account</Button>
           </Link>
         </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
+        <Grid className='forms' container justifyContent='center'>
+          <form onSubmit={handleLogin}>
+            <Grid container justifyContent='center'>
+              <Grid item xs={7}>
+                <Typography variant='h4'>Welcome back!</Typography>
+              </Grid>
+              <Grid item xs={7}>
+                <FormControl fullWidth={true} className='formInput'>
+                  <TextField
+                    aria-label='username'
+                    label='Username'
+                    name='username'
+                    type='text'
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={7}>
+                <FormControl fullWidth={true} className='formInput'>
+                  <TextField
+                    aria-label='password'
+                    label='Password'
+                    type='password'
+                    inputProps={{ minLength: 6 }}
+                    name='password'
+                  />
+                </FormControl>
+              </Grid>
+              <Grid container justifyContent='center'>
+                <Button type='submit' variant='contained'>
+                  Login
+                </Button>
+              </Grid>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+          </form>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };
