@@ -8,22 +8,30 @@ body {
   background-size: cover;
 }
 
+.login-signup-container {
+  height: 600px;
+}
+
 .login-signup {
-  height: 70px;
   padding-right: 42px;
 }
 
-.login-signup p,a{
+.login-signup p,
+a {
   margin-left: 30px;
 }
 
-.login-signup button{
-  color: #3A8DFF;
-  background-color: #FFFFFF;
+.login-signup button {
+  background-color: #ffffff;
+  color: #3a8dff;
+  width: 140px;
+  height: 54px;
+  box-shadow: 0px 2px 12px rgba(74, 106, 149, 0.2);
+  border-radius: 5px;
 }
 
 .overlay {
-  background: linear-gradient(180deg, #3A8DFF 0%, #86B9FF 100%);
+  background: linear-gradient(180deg, #3a8dff 0%, #86b9ff 100%);
   mix-blend-mode: normal;
   opacity: 0.85;
   width: 100%;
@@ -37,7 +45,7 @@ body {
 
 .chat {
   width: 80%;
-  height: 200px;
+  height: 40%;
 }
 
 .chatImage {
@@ -47,8 +55,8 @@ body {
   background-repeat: no-repeat;
 }
 
-.chatText{
-  color: #FFFFFF;
+.chatText {
+  color: #ffffff;
   font-style: normal;
   font-weight: normal;
   font-size: 26px;
@@ -61,35 +69,41 @@ body {
   font-weight: normal;
   font-size: 14px;
   text-align: center;
-  color: #B0B0B0;
+  color: #b0b0b0;
 }
 
-.create-login-btn {
-  color: #3A8DFF; 
-  width: '140px';
-  height: '54px';
-  box-shadow: 0px 2px 12px rgba(74, 106, 149, 0.2);
-  border-radius: 5px;
+.login-signup a {
+  text-decoration: none;
 }
 
-.formInput div{
-  margin-bottom: 1em;
+.formInput div {
+  margin-top: 1em;
 }
 
 .forms button {
-  background-color: #3A8DFF;
-  color: #FFFFFF;
+  background-color: #3a8dff;
+  color: #ffffff;
   padding: 1em 3em;
   margin-top: 2em;
   border-radius: 3px;
 }
 
 .forms button:hover {
-  background-color: #3A8DFF;
+  background-color: #3a8dff;
 }
 
-.login-signup-button-link {
-  text-decoration: none;
+form {
+  width: 100%;
+}
+
+.formTitle {
+  font-family: Open Sans !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 26px !important;
+  line-height: 40px !important;
+  margin-bottom: 30px !important;
+  color: #000000;
 }
 
 @media only screen and (max-width: 599px) {
