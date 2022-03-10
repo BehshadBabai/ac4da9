@@ -106,6 +106,15 @@ form {
   color: #000000;
 }
 
+#upload {
+  font-size: 12px;
+}
+
+#upload:hover {
+  cursor: pointer;
+  color: #91A3C0;
+}
+
 @media only screen and (max-width: 599px) {
   .container {
     height: 250%;

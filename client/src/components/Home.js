@@ -85,7 +85,12 @@ const Home = ({ user, logout }) => {
           if (convo.otherUser.id === recipientId) {
             const convoCopy = {...convo};
             convoCopy.messages = [...convoCopy.messages, message];
-            convoCopy.latestMessageText = message.text;
+            if(/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(message.text)){
+              convoCopy.latestMessageText = 'Photo';
+            }
+            else {
+              convoCopy.latestMessageText = message.text;
+            }
             convoCopy.id = message.conversationId;
             return convoCopy;
           }
@@ -117,7 +122,12 @@ const Home = ({ user, logout }) => {
           if (convo.id === message.conversationId) {
             const convoCopy = {...convo};
             convoCopy.messages = [...convoCopy.messages, message];
-            convoCopy.latestMessageText = message.text;
+            if(/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(message.text)){
+              convoCopy.latestMessageText = 'Photo';
+            }
+            else {
+              convoCopy.latestMessageText = message.text;
+            }
             return convoCopy;
           }
           else{
@@ -195,7 +205,6 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         const { data } = await axios.get("/api/conversations");
-
         data.forEach((convo)=>{
           convo.messages = convo.messages.reverse();
         });

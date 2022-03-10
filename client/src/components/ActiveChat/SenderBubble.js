@@ -34,7 +34,8 @@ const SenderBubble = ({ time, text }) => {
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
       <Box className={classes.bubble}>
-        <Typography className={classes.text}>{text}</Typography>
+        {/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(text) && <img src={text} alt='image' width='250px' height='280px' />}
+        {/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(text) || <Typography className={classes.text}>{text}</Typography>}
       </Box>
     </Box>
   );
