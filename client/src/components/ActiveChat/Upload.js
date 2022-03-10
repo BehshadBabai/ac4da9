@@ -1,5 +1,4 @@
 import { Grid } from "@material-ui/core";
-import { Cloudinary } from "@cloudinary/url-gen";
 
 export const Upload = ({ otherUser, conversationId, user, postMessage }) => {
   
