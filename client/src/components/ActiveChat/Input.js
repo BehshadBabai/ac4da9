@@ -42,6 +42,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
       await postMessage(reqBody);
       setText('');
       document.getElementById('upload').setAttribute('style','color: black');
+      setAttachments([]);
     }
   };
 
