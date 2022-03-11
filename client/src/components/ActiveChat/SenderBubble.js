@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography } from '@material-ui/core';
+import { Attachments } from './Attachments';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles(() => ({
     letterSpacing: -0.2,
     padding: 8,
     fontWeight: 'bold',
+    textAlign: 'center'
   },
   bubble: {
     background: '#F4F6FA',
@@ -27,15 +29,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SenderBubble = ({ time, text }) => {
+const SenderBubble = ({ time, text, images }) => {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
-      <Box className={classes.bubble}>
-        {/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(text) && <img src={text} alt='image' width='250px' height='280px' />}
-        {/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(text) || <Typography className={classes.text}>{text}</Typography>}
+      <Box className={classes.bubble} >
+        <Attachments images={images} />
+        {text && <Typography className={classes.text}>{text}</Typography>}
       </Box>
     </Box>
   );

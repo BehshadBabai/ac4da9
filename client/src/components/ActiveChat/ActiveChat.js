@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid } from '@material-ui/core';
+import { Box} from '@material-ui/core';
 import { Input, Header, Messages } from './index';
-import { Upload } from './Upload';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -54,22 +53,12 @@ const ActiveChat = ({
                   otherUser={conversation.otherUser}
                   userId={user.id}
                 />
-                <Grid container alignContent='flex-end'>
-                  <Grid item xs={10} md={11}>
-                  <Input
-                    otherUser={conversation.otherUser}
-                    conversationId={conversation.id || null}
-                    user={user}
-                    postMessage={postMessage}
-                  />
-                  </Grid>
-                  <Upload 
-                    otherUser={conversation.otherUser}
-                    conversationId={conversation.id || null}
-                    user={user}
-                    postMessage={postMessage}
-                  />
-                </Grid>
+                <Input
+                  otherUser={conversation.otherUser}
+                  conversationId={conversation.id || null}
+                  user={user}
+                  postMessage={postMessage}
+                />
               </>
             )}
           </Box>

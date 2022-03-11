@@ -85,12 +85,7 @@ const Home = ({ user, logout }) => {
           if (convo.otherUser.id === recipientId) {
             const convoCopy = {...convo};
             convoCopy.messages = [...convoCopy.messages, message];
-            if(/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(message.text)){
-              convoCopy.latestMessageText = 'Photo';
-            }
-            else {
-              convoCopy.latestMessageText = message.text;
-            }
+            convoCopy.latestMessageText = message.text;
             convoCopy.id = message.conversationId;
             return convoCopy;
           }
@@ -122,12 +117,7 @@ const Home = ({ user, logout }) => {
           if (convo.id === message.conversationId) {
             const convoCopy = {...convo};
             convoCopy.messages = [...convoCopy.messages, message];
-            if(/https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(message.text)){
-              convoCopy.latestMessageText = 'Photo';
-            }
-            else {
-              convoCopy.latestMessageText = message.text;
-            }
+            convoCopy.latestMessageText = message.text;
             return convoCopy;
           }
           else{
