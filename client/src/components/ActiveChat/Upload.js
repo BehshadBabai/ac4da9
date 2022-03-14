@@ -1,3 +1,5 @@
+import { CardMedia } from '@material-ui/core';
+
 require('dotenv').config();
 export const Upload = ({setAttachments}) => {
   
@@ -19,11 +21,11 @@ export const Upload = ({setAttachments}) => {
   }
   
   return (
-    <div className='images'>
+    <CardMedia className='images'>
       <div id='upload' onClick={()=>{document.getElementById('image-upload').click()}}>
         <i className="fa-solid fa-image fa-3x" />
       </div>
       <input type='file' hidden={true} id='image-upload' accept='image/*' onChange={handleFileSelect}/>
-    </div>
+    </CardMedia>
   );
 }

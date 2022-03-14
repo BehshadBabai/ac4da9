@@ -5,7 +5,7 @@ import { Attachments } from './Attachments';
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   avatar: {
     height: 30,
@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
     color: '#FFFFFF',
     letterSpacing: -0.2,
     padding: 8,
-    textAlign: 'center'
+    textAlign: 'center',
   },
 }));
 
@@ -48,7 +48,7 @@ const OtherUserBubble = ({ text, time, otherUser, images }) => {
           {otherUser.username} {time}
         </Typography>
         <Box className={classes.bubble}>
-        <Attachments images={images} />
+        {images.length !== 0 && <Attachments images={images} />}
         {text && <Typography className={classes.text}>{text}</Typography>}
         </Box>
       </Box>
