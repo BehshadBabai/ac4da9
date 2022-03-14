@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Avatar } from '@material-ui/core';
+import { Attachments } from './Attachments';
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   avatar: {
     height: 30,
@@ -28,10 +29,11 @@ const useStyles = makeStyles(() => ({
     color: '#FFFFFF',
     letterSpacing: -0.2,
     padding: 8,
+    textAlign: 'center',
   },
 }));
 
-const OtherUserBubble = ({ text, time, otherUser }) => {
+const OtherUserBubble = ({ text, time, otherUser, images }) => {
   const classes = useStyles();
 
   return (
@@ -46,7 +48,8 @@ const OtherUserBubble = ({ text, time, otherUser }) => {
           {otherUser.username} {time}
         </Typography>
         <Box className={classes.bubble}>
-          <Typography className={classes.text}>{text}</Typography>
+        {images.length !== 0 && <Attachments images={images} />}
+        {text && <Typography className={classes.text}>{text}</Typography>}
         </Box>
       </Box>
     </Box>

@@ -24,7 +24,13 @@ const ChatContent = ({ conversation }) => {
   const classes = useStyles();
 
   const { otherUser } = conversation;
-  const latestMessageText = conversation.id && conversation.latestMessageText;
+  let latestMessageText = '';
+  if(conversation.id && /https:\/\/res.cloudinary.com\/behshad-cloudinary\/image\/upload/.test(conversation.latestMessageText)){
+    latestMessageText = 'Photo';
+  }
+  else if (conversation.id ){
+    latestMessageText = conversation.latestMessageText;
+  }
 
   return (
     <Box className={classes.root}>
